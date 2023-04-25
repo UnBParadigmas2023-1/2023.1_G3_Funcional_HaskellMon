@@ -1,0 +1,3 @@
+import Hw
+
+main = hw

@@ -1,4 +1,5 @@
 dist
+.vscode/
 dist-*
 cabal-dev
 *.o
