@@ -1,4 +1,4 @@
-# RepositorioTemplate
+<!--# RepositorioTemplate
 Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
 As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
 
@@ -13,19 +13,26 @@ Paradigmas:
 
 **!! *Exemplo de título correto: 2022.2_G1_Logico_ProjetoRoteirosAereos*. !!**
  
- (Apague esses comentários)
+ (Apague esses comentários)-->
 
-# NomeDoProjeto
+# HaskellMon
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
-**Nro do Grupo (de acordo com a Planilha de Divisão dos Grupos)**: XX<br>
-**Paradigma**: XXXXXXXXXX<br>
+**Nro do Grupo**: 03<br>
+**Paradigma**: Funcional<br>
 
 ## Alunos
-|Matrícula | Aluno |
-| -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| Matrícula | Aluno |
+| :-: | -- |
+|18/0030264|Antonio Igor Carvalho|
+|18/0098021|Antonio Rangel Chaves|
+|18/0149687|Daniel Porto de Souza|
+|18/0042238|João Gabriel de Campos de Matos|
+|18/0124498|Kess Jhones Gomes Tavares|
+|18/0024868|Mateus Moreira Lima|
+|18/0132385|Vitor Diniz Pagani Vieira Ribeiro|
+|18/0145363|Yan Andrade de Sena|
+|18/0078640|Yuri Alves bacarias|
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais. 
@@ -36,11 +43,23 @@ Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no 
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
 ## Instalação 
-**Linguagens**: xxxxxx<br>
-**Tecnologias**: xxxxxx<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagens**: Haskell<br>
+**Tecnologias**: GHC, Docker<br>
+<!--Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
-Gifs animados e outras ilustrações são bem-vindos!
+Gifs animados e outras ilustrações são bem-vindos!-->
+
+> $ git clone https://github.com/UnBParadigmas2023-1/2023.1_G3_Funcional_HaskellMon.git
+
+Na pasta do repositório:
+
+> $ make build
+
+> $ make run
+
+ou
+
+> $ make build_run
 
 ## Uso 
 Explique como usar seu projeto.
