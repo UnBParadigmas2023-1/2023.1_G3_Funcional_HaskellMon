@@ -60,12 +60,33 @@ funcaoAtaque pokemonAtacante pokemonAlvo ataqueEscolhido
         hFlush stdout
         funcaoAtaque pokemonAtacante pokemonAlvo ataqueEscolhido
 
+-- Função para excluir pokemon de uma lista
+excluirPokemon :: String -> [Pokemon] -> IO [Pokemon]
+excluirPokemon nomePokemon listaPokemons = return $ filter (\pokemon -> nome pokemon /= nomePokemon) listaPokemons
 
 -- Função para simular uma batalha entre dois pokémons
-batalhar :: Pokemon -> Pokemon -> IO ()
-batalhar p1 p2
-    | vida p1 <= 0 = putStrLn $ "Seu pokemon " ++ nome p1 ++ " foi derrotado!"
-    | vida p2 <= 0 = putStrLn $ "O pokemon " ++ nome p2 ++ " do ginásio foi derrotado!"
+batalhar :: Pokemon -> Pokemon -> [Pokemon] -> [Pokemon] -> IO ()
+batalhar p1 p2 reservasTreinador reservasGinasio
+    | vida p1 <= 0 = do 
+        putStrLn $ "Seu pokemon " ++ nome p1 ++ " foi derrotado!"
+        hFlush stdout
+        if null reservasTreinador then do
+            putStrLn $ "Você perdeu :'("
+            hFlush stdout
+        else do
+            pokemonEscolhido <- escolherPokemon reservasTreinador
+            novaReservasTreinador <- excluirPokemon (nome pokemonEscolhido) reservasTreinador
+            batalhar pokemonEscolhido p2 novaReservasTreinador reservasGinasio
+    | vida p2 <= 0 = do
+        putStrLn $ "O pokemon " ++ nome p2 ++ " do ginásio foi derrotado!"
+        hFlush stdout
+        if null reservasGinasio then do
+            putStrLn $ "Você ganhou! Parabains! **clap clap**"
+            hFlush stdout
+        else do
+            let pokemonEscolhido = head reservasGinasio
+            novaReservasGinasios <- excluirPokemon (nome pokemonEscolhido) reservasGinasio
+            batalhar p1 pokemonEscolhido reservasTreinador novaReservasGinasios
     | otherwise = do
         putStrLn "Opções de ataque: 1, 2, 3"
         hFlush stdout
@@ -74,16 +95,29 @@ batalhar p1 p2
         let escolhaNum = read ataqueEscolhido
 
         novoP2 <- funcaoAtaque p1 p2 escolhaNum
-        novoP1 <- funcaoAtaque p2 p1 1
-        batalhar novoP1 novoP2
+        if vida novoP2 > 0 then do
+            novoP1 <- funcaoAtaque p2 p1 1
+            batalhar novoP1 novoP2 reservasTreinador reservasGinasio
+        else do
+            batalhar p1 novoP2 reservasTreinador reservasGinasio
+
         
+
 
 -- Função principal
 main :: IO ()
 main = do
     putStrLn "Bem-vindo ao jogo de Pokémon!"
     hFlush stdout
+
     pokemonEscolhido <- escolherPokemon treinador
+    reservasTreinador <- excluirPokemon (nome pokemonEscolhido) treinador
+
     putStrLn $ "Você escolheu o pokémon: " ++ show pokemonEscolhido
     hFlush stdout
-    batalhar pokemonEscolhido (head ginasio)
+
+    let pokemonEscolhidoGinasio = head ginasio
+    reservasGinasio <- excluirPokemon (nome pokemonEscolhidoGinasio) ginasio
+
+    batalhar pokemonEscolhido pokemonEscolhidoGinasio reservasTreinador reservasGinasio
+
