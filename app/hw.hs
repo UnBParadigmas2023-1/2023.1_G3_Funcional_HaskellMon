@@ -1,4 +1,4 @@
 module Hw
   where
 
-hw = print "Hello World!!!"
+hw = print "Hello World!"

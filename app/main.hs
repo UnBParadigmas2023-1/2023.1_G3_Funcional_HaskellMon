@@ -1,3 +1,7 @@
 import Hw
+import Pre_batle
 
-main = hw
+main = 
+    do
+        hw
+        pre_batle
