@@ -1,4 +1,6 @@
 import System.IO
+import Data.Time
+import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 
 -- Definindo o tipo Pokemon
 data Pokemon = Pokemon { nome :: String
@@ -49,12 +51,28 @@ escolherPokemon pokemons = do
 -- Função ataque
 funcaoAtaque :: Pokemon -> Pokemon -> Int -> IO Pokemon
 funcaoAtaque pokemonAtacante pokemonAlvo ataqueEscolhido
-    | ataqueEscolhido >= 1 && ataqueEscolhido <= 3 = do
-        let valorAtaque = ataque pokemonAtacante * ataqueEscolhido -- Random adicionar 
-        let novaVida = vida pokemonAlvo - valorAtaque
-        putStrLn $ nome pokemonAtacante ++ " inflingiu " ++ show valorAtaque ++ " de dano e deixou " ++ nome pokemonAlvo ++ " com " ++ show novaVida ++ " pontos de vida."
-        hFlush stdout
-        return Pokemon { nome = nome pokemonAlvo, vida = novaVida, ataque = ataque pokemonAlvo }
+    | ataqueEscolhido >= 1 && ataqueEscolhido <= 2 = do
+        if ataqueEscolhido == 1 then do
+            let valorAtaque = ataque pokemonAtacante * 1
+            let novaVida = vida pokemonAlvo - valorAtaque
+            putStrLn $ nome pokemonAtacante ++ " inflingiu " ++ show valorAtaque ++ " de dano e deixou " ++ nome pokemonAlvo ++ " com " ++ show novaVida ++ " pontos de vida."
+            hFlush stdout
+            return Pokemon { nome = nome pokemonAlvo, vida = novaVida, ataque = ataque pokemonAlvo }
+        else do
+            let currentTimeInSeconds = (round . utcTimeToPOSIXSeconds <$> getCurrentTime) :: IO Int
+            currentTimeMod2 <- (`mod` 2) <$> currentTimeInSeconds
+            if currentTimeMod2 == 0 then do
+                let valorAtaque = ataque pokemonAtacante * 2
+                let novaVida = vida pokemonAlvo - valorAtaque
+                putStrLn $ nome pokemonAtacante ++ " inflingiu " ++ show valorAtaque ++ " de dano e deixou " ++ nome pokemonAlvo ++ " com " ++ show novaVida ++ " pontos de vida."
+                hFlush stdout
+                return Pokemon { nome = nome pokemonAlvo, vida = novaVida, ataque = ataque pokemonAlvo }
+            else do
+                putStrLn $ nome pokemonAtacante ++ " ataca, porém o seu oponente desviou do ataque PODEROSO!!"
+                hFlush stdout
+                errouAtaque
+                return pokemonAlvo
+        
     | otherwise = do
         putStrLn "Opção inválida!"
         hFlush stdout
@@ -88,7 +106,8 @@ batalhar p1 p2 reservasTreinador reservasGinasio
             novaReservasGinasios <- excluirPokemon (nome pokemonEscolhido) reservasGinasio
             batalhar p1 pokemonEscolhido reservasTreinador novaReservasGinasios
     | otherwise = do
-        putStrLn "Opções de ataque: 1, 2, 3"
+        putStrLn "1 - Ataque normal: Um ataque rápido e certeiro"
+        putStrLn "2 - Ataque especial: Um ataque poderoso, porém lento, o oponente pode desviar!"
         hFlush stdout
 
         ataqueEscolhido <- getLine
@@ -102,12 +121,45 @@ batalhar p1 p2 reservasTreinador reservasGinasio
             batalhar p1 novoP2 reservasTreinador reservasGinasio
 
         
+-- Função errou ataque
+errouAtaque :: IO()
+errouAtaque = do
+    putStrLn"       ERROU! O ATAQUE      "
+    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣆⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠸⣷⣮⣿⣿⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀"
+    putStrLn"⠀⠀⠀⠀⢀⡠⠒⠉⠀⠀⠀⠀⠀⠀⠈⠁⠲⢖⠒⡀⠀⠀ "
+    putStrLn"⠀⠀⠀⡠⠴⣏⠀⢀⡀⠀⢀⡀⠀⠀⠀⡀⠀⠀⡀⠱⡈⢄⠀"
+    putStrLn"⠀⠀⢠⠁⠀⢸⠐⠁⠀⠄⠀⢸⠀⠀⢎⠀⠂⠀⠈⡄⢡⠀⢣"
+    putStrLn"⠀⢀⠂⠀⠀⢸⠈⠢⠤⠤⠐⢁⠄⠒⠢⢁⣂⡐⠊⠀⡄⠀⠸"
+    putStrLn"⠀⡘⠀⠀⠀⢸⠀⢠⠐⠒⠈⠀⠀⠀⠀⠀⠀⠈⢆⠜⠀⠀⢸"
+    putStrLn"⠀⡇⠀⠀⠀⠀⡗⢺⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⡄⢀⠎"
+    putStrLn"⠀⢃⠀⠀⠀⢀⠃⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠷⡃⠀"
+    putStrLn"⠀⠈⠢⣤⠀⠈⠀⠀⠑⠠⠤⣀⣀⣀⣀⣀⡀⠤⠒⠁⠀⢡⠀"
+    putStrLn"⡀⣀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⠀"
+    putStrLn"⠑⢄⠉⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⠀"
+    putStrLn"⠀⠀⠑⠢⢱⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠁⠀"
+    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀"
+    hFlush stdout
+
 
 
 -- Função principal
 main :: IO ()
 main = do
     putStrLn "Bem-vindo ao jogo de Pokémon!"
+    putStrLn "                                  ,'\\"
+    putStrLn "    _.----.        ____         ,'  _\\   ___    ___     ____"
+    putStrLn "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`."
+    putStrLn "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |"
+    putStrLn " \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |"
+    putStrLn "   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |"
+    putStrLn "    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |"
+    putStrLn "     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |"
+    putStrLn "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |"
+    putStrLn "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |"
+    putStrLn "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |"
+    putStrLn "                                `'                            '-._|"
     hFlush stdout
 
     pokemonEscolhido <- escolherPokemon treinador
