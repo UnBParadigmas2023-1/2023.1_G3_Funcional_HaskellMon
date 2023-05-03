@@ -1,5 +1,5 @@
 build: clean
-	docker build . -t haskellmon-img:latest
+	docker build . -t haskellmon-img:latest --force-rm
 
 clean: clean-container	
 	-docker image rm haskellmon-img:latest
