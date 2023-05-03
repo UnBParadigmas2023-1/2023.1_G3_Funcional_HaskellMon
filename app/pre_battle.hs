@@ -1,4 +1,4 @@
-module Pre_batle where
+module Pre_battle where
 
 import System.Process
 
@@ -27,7 +27,7 @@ list_gym  =
 
 
 
-pre_batle = list_gym
+pre_battle = list_gym
 
 
 
