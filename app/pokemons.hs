@@ -1,3 +1,6 @@
+module Pokemon where
+
+
 data Pokemon = Pokemon {
   id :: Int,
   nome :: String,
@@ -16,15 +19,16 @@ charizard = Pokemon 6 "Charizard" 1 9 78 104
 squirtle = Pokemon 7 "Squirtle" 2 18 44 48
 wartortle = Pokemon 8 "Wartortle" 2 18 59 63
 blastoise = Pokemon 9 "Blastoise" 2 18 79 103
+-- module Pre_batle where
+
 caterpie = Pokemon 10 "Caterpie" 11 18 45 30
 metapod = Pokemon 11 "Metapod" 11 18 50 20
 butterfree = Pokemon 12 "Butterfree" 11 9 60 45
 weedle = Pokemon 13 "Weedle" 11 7 40 35
 kakuna = Pokemon 14 "Kakuna" 11 7 45 25
 beedrill = Pokemon 15 "Beedrill" 11 7 65 90
-pidgey = Pokemon 16 "Pidgey" 0 9 40 45
-pidgeotto = Pokemon 17 "Pidgeotto"  0 9 63 60
-pidgeot = Pokemon 18 "Pidgeot"  0 9 83 80
+-- module Pre_batle where
+
 rattata = Pokemon 19 "Rattata"  0 18 30 56
 raticate = Pokemon 20 "Raticate"  0 18 55 81
 spearow = Pokemon 21 "Spearow" 0 9 40 60
