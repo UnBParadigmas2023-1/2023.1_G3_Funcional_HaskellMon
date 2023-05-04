@@ -1,4 +1,4 @@
-module Pokedex where
+module Pokedex (listaPokemons) where
 
 import Structs
 
@@ -162,6 +162,7 @@ pokedex=listaPokemons
 
 
 ginasio = filter(\p -> pontosDeVida p + ataque p > 100) listaPokemons
+
 
 
 
