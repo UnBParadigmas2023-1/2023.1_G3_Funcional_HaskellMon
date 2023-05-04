@@ -2,44 +2,38 @@ import Hw
 import System.Exit (exitSuccess)
 import System.IO ( stdout, hFlush )
 import System.Process
+import Control.Concurrent
 
 main :: IO ()
-main = do
-    
-    menu
+main = menu ""
 
-
-clearScreen :: IO ()
-clearScreen = system "cls" >> return ()
-
-menu :: IO ()
-menu = do 
+menu :: String -> IO ()
+menu "" = do 
     
-    
-    putStrLn "  ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗     ███╗   ███╗ ██████╗ ███╗   ██╗ "
+    system "clear"    
+    putStrLn "\n  ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗     ███╗   ███╗ ██████╗ ███╗   ██╗ "
     putStrLn "  ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██║     ██║     ████╗ ████║██╔═══██╗████╗  ██║ "
     putStrLn "  ███████║███████║███████╗█████╔╝ █████╗  ██║     ██║     ██╔████╔██║██║   ██║██╔██╗ ██║ "
     putStrLn "  ██╔══██║██╔══██║╚════██║██╔═██╗ ██╔══╝  ██║     ██║     ██║╚██╔╝██║██║   ██║██║╚██╗██║ "
     putStrLn "  ██║  ██║██║  ██║███████║██║  ██╗███████╗███████╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║ "
-    putStrLn "  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ "
-                                                                                      
-    putStrLn " "
-    putStrLn "\t\tBem-vindo(a) ao HaskellMon"
-    putStrLn " "
-    putStrLn "1. Iniciar"
-    putStrLn "2. Sair"
-    putStr "Escolha uma opcao: "
+    putStrLn "  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ \n"
+    putStrLn "\t\tBem-vindo(a) ao HaskellMonn\n"
+    putStrLn "[1] Iniciar"
+    putStrLn "[2] Sair\n"
+    putStr ">> "
     
     hFlush stdout -- limpa o buffer de saída
     choice <- getLine -- lê a escolha do usuário
-    case choice of
-        "1" -> do
-            putStrLn "Iniciando HaskellMon..."
-            
-        "2" -> do
-            putStrLn "Tchau!"
-            exitSuccess
-        _   -> do
-            clearScreen
-            putStrLn "Escolha inválida, digite novamente"
-            menu
+    menu choice
+
+menu i 
+    | i == "1" = putStrLn "Iniciando HakellMon..."
+    | i == "2" = do 
+         putStrLn " 0/ Tchau!"
+         exitSuccess
+    | otherwise = do
+         putStrLn "Escolha inválida, digite novamente"
+         threadDelay 2500000
+         menu ""
+
+
