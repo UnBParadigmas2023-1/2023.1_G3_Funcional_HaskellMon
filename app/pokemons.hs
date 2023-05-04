@@ -161,8 +161,14 @@ listaPokemons ::[Pokemon]= [
 pokedex=listaPokemons
 
 
-ginasio = filter(\p -> pontosDeVida p + ataque p > 100) listaPokemons
+primeiroGinasio:: [Pokemon]
+primeiroGinasio = filter(\p -> pontosDeVida p + ataque p <= 120) pokedex
 
+segundoGinasio:: [Pokemon]
+segundoGinasio = filter(\p -> pontosDeVida p + ataque p > 120 && pontosDeVida p + ataque p < 170) pokedex
+
+terceiroGinasio:: [Pokemon]
+terceiroGinasio = filter(\p -> pontosDeVida p + ataque p >= 170) pokedex
 
 
 
