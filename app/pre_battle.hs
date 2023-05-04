@@ -4,7 +4,7 @@ import System.IO
 import Control.Concurrent
 import System.Random
 
-import Pokedex
+import Pokedex (listaPokemons)
 import Structs
 
 
@@ -26,21 +26,28 @@ list_gym "" =
         list_gym input
 
 list_gym i
-    | i == "x" || i == "X" = return (generate_gym 1)
-    | i == "1" = return (generate_gym 1)
-    | i == "2" = return (generate_gym 1)
-    | i == "3" = return (generate_gym 1)
+    | i == "x" || i == "X" = generate_gym
+    | i == "1" = generate_gym
+    | i == "2" = generate_gym
+    | i == "3" = generate_gym
     | otherwise = do
         putStrLn "Opção inválida. Por favor, tente novamente."
         threadDelay 2500000
         list_gym "" 
 
 
-generate_gym :: Int -> Gym
-generate_gym x = do
-    -- id <- random_id
-    let gym = Gym { name = "foo", pokemons = [listaPokemons!!0] }
-    gym
+generate_gym :: IO Gym
+generate_gym = do
+    let gym = Gym { name = "foo", pokemons = [] }
+    add_pokemon gym
+
+add_pokemon :: Gym -> IO Gym
+add_pokemon gym = do
+    randomNum <- getStdGen
+    let indices = take 3 $ randomRs (0, length listaPokemons - 1) randomNum
+    let gymPokemons = map (listaPokemons!!) indices
+    let updatedGym = gym { pokemons = gymPokemons }
+    return updatedGym
     
 {-generate_gym 2 = do
     id <- random_id
