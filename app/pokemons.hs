@@ -1,4 +1,4 @@
-module Pokedex (listaPokemons) where
+module Pokedex (listaPokemons, primeiroGinasio, segundoGinasio, terceiroGinasio) where
 
 import Structs
 
