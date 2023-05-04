@@ -26,29 +26,36 @@ list_gym "" =
         list_gym input
 
 list_gym i
-    | i == "x" || i == "X" = generate_gym
-    | i == "1" = generate_gym
-    | i == "2" = generate_gym
-    | i == "3" = generate_gym
+    | i == "x" || i == "X" = generate_gym 10
+    | i == "1" = generate_gym 25
+    | i == "2" = generate_gym 50
+    | i == "3" = generate_gym 100
     | otherwise = do
         putStrLn "Opção inválida. Por favor, tente novamente."
         threadDelay 2500000
         list_gym "" 
 
 
-generate_gym :: IO Gym
-generate_gym = do
-    let gym = Gym { name = "foo", pokemons = [] }
-    add_pokemon gym
+-- generate_gym :: IO Gym
+-- generate_gym = do
+--     let gym = Gym { name = "foo", pokemons = [] }
+--     add_pokemon gym
 
-add_pokemon :: Gym -> IO Gym
-add_pokemon gym = do
+generate_gym:: Int -> IO Gym
+generate_gym difficulty = do
+    let gym = Gym { name = "foo", pokemons = [] }
+    add_pokemon gym difficulty
+
+
+add_pokemon :: Gym -> Int -> IO Gym
+add_pokemon gym difficulty = do
     randomNum <- getStdGen
-    let indices = take 3 $ randomRs (0, length listaPokemons - 1) randomNum
+    let indices = take 3 $ randomRs (difficulty, length listaPokemons - 1) randomNum
     let gymPokemons = map (listaPokemons!!) indices
     let updatedGym = gym { pokemons = gymPokemons }
     return updatedGym
-    
+
+
 {-generate_gym 2 = do
     id <- random_id
     gym = Gym "bar" [pokedex!!id ]
