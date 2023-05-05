@@ -1,9 +1,8 @@
 module Battle (iniciaBatalha) where 
-
+import System.Process
 import System.IO
 import Data.Time
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
-
 import Structs
 
 -- Função para exibir uma lista numerada de pokémons
@@ -13,7 +12,7 @@ exibirPokemons pokemons = mapM_ putStrLn [show i ++ ". " ++ show p | (i, p) <- z
 -- Função para escolher um pokémon a partir de uma lista
 escolherPokemon :: [Pokemon] -> IO Pokemon
 escolherPokemon pokemons = do
-  putStrLn "Escolha um pokémon:"
+  putStr "\nEscolha um pokémon: "
   hFlush stdout
   exibirPokemons pokemons
   hFlush stdout
@@ -126,7 +125,8 @@ errouAtaque = do
 
 mensagemVitoria :: IO()
 mensagemVitoria = do
-    putStrLn " ██╗   ██╗██╗████████╗ ██████╗ ██████╗ ██╗ █████╗ "
+    system "clear"
+    putStrLn "\n ██╗   ██╗██╗████████╗ ██████╗ ██████╗ ██╗ █████╗ "
     putStrLn " ██║   ██║██║╚══██╔══╝██╔═══██╗██╔══██╗██║██╔══██╗ "
     putStrLn " ██║   ██║██║   ██║   ██║   ██║██████╔╝██║███████║ "
     putStrLn " ╚██╗ ██╔╝██║   ██║   ██║   ██║██╔══██╗██║██╔══██║ "
@@ -162,7 +162,8 @@ mensagemVitoria = do
 
 mensagemDerrota :: IO()
 mensagemDerrota = do
-    putStrLn " ██████╗ ███████╗██████╗ ██████╗  ██████╗ ████████╗ █████╗ "
+    system "clear"
+    putStrLn "\n ██████╗ ███████╗██████╗ ██████╗  ██████╗ ████████╗ █████╗ "
     putStrLn " ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔═══██╗╚══██╔══╝██╔══██╗ "
     putStrLn " ██║  ██║█████╗  ██████╔╝██████╔╝██║   ██║   ██║   ███████║ "
     putStrLn " ██║  ██║██╔══╝  ██╔══██╗██╔══██╗██║   ██║   ██║   ██╔══██║ "
@@ -174,7 +175,8 @@ mensagemDerrota = do
 
 iniciaBatalha :: [Pokemon] -> [Pokemon] -> IO Bool
 iniciaBatalha treinador ginasio = do 
-    putStrLn "Bem-vindo à batalha de Pokémon! :O"
+    system "clear"
+    putStrLn "\nBem-vindo à batalha de Pokémon! :O"
     putStrLn "                                  ,'\\"
     putStrLn "    _.----.        ____         ,'  _\\   ___    ___     ____"
     putStrLn "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`."

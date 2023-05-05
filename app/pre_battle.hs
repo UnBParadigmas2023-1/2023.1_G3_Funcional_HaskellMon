@@ -1,5 +1,6 @@
 module Pre_battle where
 import System.Process
+import System.Exit (exitSuccess)
 import System.IO
 import Control.Concurrent
 import System.Random
@@ -33,7 +34,7 @@ list_gym :: String -> IO Gym
 list_gym "" = 
     do
         system "clear"
-        putStrLn "\t\tGinásios"
+        putStrLn "[x] Sair\t\tGinásios:\n"
         putStrLn "[1] Ginásio Pewter\n\tDificuldade: Fácil\n"
         putStrLn "[2] Ginásio Cerulean\n\tDificuldade: Médio\n"
         putStrLn "[3] Ginásio Vermilion\n\tDificuldade: Dificil" 
@@ -43,6 +44,7 @@ list_gym "" =
         list_gym input
 
 list_gym i
+    | i == "x" || i == "X" = exitSuccess
     | i == "1" = generate_gym primeiroGinasio
     | i == "2" = generate_gym segundoGinasio
     | i == "3" = generate_gym terceiroGinasio
