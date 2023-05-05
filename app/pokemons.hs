@@ -309,7 +309,7 @@ listaPokemonsTerciario :: [Pokemon] = [
 
 
 treinador:: Trainer
-treinador = Trainer { nome_treinador = "Treinador", pokes = filter(\p -> pontosDeVida p + ataque p > 120 && pontosDeVida p + ataque p < 170) pokedex }
+treinador = Trainer { nome_treinador = "Treinador", pokes = [listaPokemonsPrimario!!0, listaPokemonsSecundario!!0, listaPokemonsTerciario!!0]}
 
 segundoGinasio:: Gym
 segundoGinasio = Gym { name = "Cerulean", pokemons = filter(\p -> pontosDeVida p + ataque p > 120 && pontosDeVida p + ataque p < 170) pokedex }
