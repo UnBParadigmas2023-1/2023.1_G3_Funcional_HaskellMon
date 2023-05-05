@@ -4,6 +4,7 @@ import System.Exit (exitSuccess)
 import System.IO
 import Control.Concurrent
 import System.Random
+import System.Random.Shuffle (shuffle')
 import Pokedex (primeiroGinasio, segundoGinasio, terceiroGinasio)
 import Structs
 
@@ -53,10 +54,18 @@ list_gym i
         threadDelay 2500000
         list_gym "" 
 
+randomUnique :: RandomGen g => Int -> Int -> Int -> g -> [Int]
+randomUnique n min max gen = do
+    let allValues = [min..max]
+    let shuffledValues = shuffle' allValues (length allValues) gen
+    take n shuffledValues
+
 generate_gym :: Gym -> IO Gym
 generate_gym gym = do
-    randomNum <- getStdGen
-    let indices = take 3 $ randomRs (0, length (pokemons gym) - 1) randomNum
+    randomNum <- newStdGen
+    let indices = randomUnique 3 0 (length (pokemons gym) - 1)  randomNum
+    print indices
+    --let indices = take 3 $ randomRs (0, (length (pokemons gym)) - 1) randomNum
     let gymPokemons = map ((pokemons gym)!!) indices
     let updatedGym = gym { pokemons = gymPokemons }
     return updatedGym

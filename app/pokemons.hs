@@ -312,11 +312,11 @@ treinador:: Trainer
 treinador = Trainer { nome_treinador = "Treinador", pokes = [listaPokemonsPrimario!!0, listaPokemonsSecundario!!0, listaPokemonsTerciario!!0]}
 
 segundoGinasio:: Gym
-segundoGinasio = Gym { name = "Cerulean", pokemons = filter(\p -> pontosDeVida p + ataque p > 120 && pontosDeVida p + ataque p < 170) pokedex }
+segundoGinasio = Gym { name = "Cerulean", pokemons = filter(\p -> pontosDeVida p + ataque p > 590 && pontosDeVida p + ataque p < 680) pokedex }
 
 terceiroGinasio:: Gym
-terceiroGinasio = Gym { name = "Vermilion", pokemons = filter(\p -> pontosDeVida p + ataque p >= 170) pokedex }
+terceiroGinasio = Gym { name = "Vermilion", pokemons = filter(\p -> pontosDeVida p + ataque p >= 680) pokedex }
 
 primeiroGinasio :: Gym
-primeiroGinasio = Gym { name = "Pewter", pokemons = filter(\p -> pontosDeVida p + ataque p <= 120) pokedex }
+primeiroGinasio = Gym { name = "Pewter", pokemons = filter(\p -> pontosDeVida p + ataque p <= 590) pokedex }
 
