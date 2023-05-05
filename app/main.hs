@@ -36,7 +36,7 @@ menu i
          putStrLn "Iniciando HakellMon..."
          threadDelay 2500000
          aux <- pre_battle
-         exibirPokemons (pokemons aux)
+         --exibirPokemons (pokemons aux)
          print (name aux)       
     | i == "2" = do 
          putStrLn " 0/ Tchau!"

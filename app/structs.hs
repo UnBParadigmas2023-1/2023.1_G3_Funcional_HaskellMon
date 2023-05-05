@@ -13,3 +13,8 @@ data Gym = Gym {
   name :: String, 
   pokemons :: [Pokemon]
 }
+
+data Trainer = Trainer {
+  nome_treinador :: String,
+  pokes :: [Pokemon]  
+}

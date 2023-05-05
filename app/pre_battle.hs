@@ -3,30 +3,46 @@ import System.Process
 import System.IO
 import Control.Concurrent
 import System.Random
-
 import Pokedex (primeiroGinasio, segundoGinasio, terceiroGinasio)
 import Structs
 
-
--- random_id :: Int
--- random_id = randomRIO (0::Int, 150::Int) :: Int
-
-
+show_gym :: Gym -> String -> IO Gym
+show_gym gym a 
+    | a == "" = do
+        system "clear"
+        putStr "Ginásio Selecionado: "
+        hFlush stdout
+        putStrLn (name gym) 
+        putStrLn "\n\tPokemons adversários:"
+        mapM_ putStrLn [show i ++ ". " ++ nome ++ "\tTipo 1: " ++ show primeiroTipo ++ "\tTipo 2: " ++ show segundoTipo ++ "\tHP: " ++ show hp ++ "\tAtaque: " ++ show ataque | (i, Pokemon _ nome primeiroTipo segundoTipo hp ataque) <- zip [1..] (pokemons gym)]
+        putStrLn "\n[1] Desafiar\n[2] Voltar"
+        putStrLn "\n>> "
+        hFlush stdout
+        input <- getLine
+        show_gym gym input
+    | a == "1" = return gym
+    | a == "2" = do 
+        new_gym <- list_gym ""
+        show_gym new_gym ""     
+    | otherwise = do 
+        putStrLn "Opção inválida. Por favor, tente novamente."
+        threadDelay 2500000
+        show_gym gym ""
+ 
 list_gym :: String -> IO Gym
 list_gym "" = 
     do
         system "clear"
-        putStrLn "[x] Quit\tGinásios\n"
-        putStrLn "[1] Ginásio foo\n\tDificuldade: Fácil\n"
-        putStrLn "[2] Ginásio bar\n\tDificuldade: Médio\n"
-        putStrLn "[3] Ginásio xpto\n\tDificuldade: Dificil" 
+        putStrLn "\t\tGinásios"
+        putStrLn "[1] Ginásio Pewter\n\tDificuldade: Fácil\n"
+        putStrLn "[2] Ginásio Cerulean\n\tDificuldade: Médio\n"
+        putStrLn "[3] Ginásio Vermilion\n\tDificuldade: Dificil" 
         putStr "\n>> "
         hFlush stdout 
         input <- getLine
         list_gym input
 
 list_gym i
-    | i == "x" || i == "X" = generate_gym primeiroGinasio
     | i == "1" = generate_gym primeiroGinasio
     | i == "2" = generate_gym segundoGinasio
     | i == "3" = generate_gym terceiroGinasio
@@ -35,37 +51,14 @@ list_gym i
         threadDelay 2500000
         list_gym "" 
 
-
--- generate_gym :: IO Gym
--- generate_gym = do
---     let gym = Gym { name = "foo", pokemons = [] }
---     add_pokemon gym
-
-generate_gym:: [Pokemon] -> IO Gym
-generate_gym selected_gym = do
-    let gym = Gym { name = "foo", pokemons = [] }
-    add_pokemon gym selected_gym
-
-
-add_pokemon :: Gym -> [Pokemon] -> IO Gym
-add_pokemon gym selected_gym = do
+generate_gym :: Gym -> IO Gym
+generate_gym gym = do
     randomNum <- getStdGen
-    let indices = take 3 $ randomRs (0, length selected_gym - 1) randomNum
-    let gymPokemons = map (selected_gym!!) indices
+    let indices = take 3 $ randomRs (0, length (pokemons gym) - 1) randomNum
+    let gymPokemons = map ((pokemons gym)!!) indices
     let updatedGym = gym { pokemons = gymPokemons }
     return updatedGym
 
-
-{-generate_gym 2 = do
-    id <- random_id
-    gym = Gym "bar" [pokedex!!id ]
-    return gym
-    
-generate_gym 3 = do    
-    id <- random_id
-    gym::Gym = Gym  "xpto" [pokedex!!id ]
-    return gym-}
-
-
-
-pre_battle = list_gym ""
+pre_battle = do
+    gym <- list_gym ""
+    show_gym gym "" 
