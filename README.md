@@ -80,7 +80,8 @@ TEMPO: +/- 15min
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Antonio Rangel Chaves  |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
+| Antonio Rangel Chaves      |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
+| Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e mensagens de vitória e derrota      | Regular |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
