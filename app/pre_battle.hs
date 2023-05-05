@@ -18,7 +18,7 @@ show_gym gym a
         putStrLn "\n\tPokemons adversários:"
         mapM_ putStrLn [". " ++ nome ++ "\tTipo 1: " ++ show primeiroTipo ++ "\tTipo 2: " ++ show segundoTipo ++ "\tHP: " ++ show hp ++ "\tAtaque: " ++ show ataque | (i, Pokemon nome primeiroTipo segundoTipo hp ataque) <- zip [1..] (pokemons gym)]
         putStrLn "\n[1] Desafiar\n[2] Voltar"
-        putStrLn "\n>> "
+        putStr "\n>> "
         hFlush stdout
         input <- getLine
         show_gym gym input
@@ -36,9 +36,9 @@ list_gym "" =
     do
         system "clear"
         putStrLn "[x] Sair\t\tGinásios:\n"
-        putStrLn "[1] Ginásio Pewter\n\tDificuldade: Fácil\n"
-        putStrLn "[2] Ginásio Cerulean\n\tDificuldade: Médio\n"
-        putStrLn "[3] Ginásio Vermilion\n\tDificuldade: Dificil" 
+        putStrLn "[1] Ginásio Pewter\n\tDificuldade:\ESC[92m Fácil\ESC[0m\n"
+        putStrLn "[2] Ginásio Cerulean\n\tDificuldade:\ESC[93m Médio\ESC[0m\n"
+        putStrLn "[3] Ginásio Vermilion\n\tDificuldade:\ESC[91m Dificil\ESC[0m" 
         putStr "\n>> "
         hFlush stdout 
         input <- getLine

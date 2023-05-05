@@ -4,6 +4,7 @@ import System.IO
 import Data.Time
 import Data.Time.Clock.POSIX (utcTimeToPOSIXSeconds)
 import Structs
+import Control.Concurrent
 
 -- Função para exibir uma lista numerada de pokémons
 exibirPokemons :: [Pokemon] -> IO ()
@@ -12,9 +13,9 @@ exibirPokemons pokemons = mapM_ putStrLn [show i ++ ". " ++ show p | (i, p) <- z
 -- Função para escolher um pokémon a partir de uma lista
 escolherPokemon :: [Pokemon] -> IO Pokemon
 escolherPokemon pokemons = do
+  exibirPokemons pokemons
   putStr "\nEscolha um pokémon: "
   hFlush stdout
-  exibirPokemons pokemons
   hFlush stdout
   escolha <- getLine
   let escolhaNum = read escolha
@@ -32,8 +33,8 @@ funcaoAtaque pokemonAtacante pokemonAlvo ataqueEscolhido
         if ataqueEscolhido == 1 then do
             let valorAtaque = ataque pokemonAtacante * 1
             let novaVida = pontosDeVida pokemonAlvo - valorAtaque
-            putStrLn $ nome pokemonAtacante ++ " inflingiu " ++ show valorAtaque ++ " de dano e deixou " ++ nome pokemonAlvo ++ " com " ++ show novaVida ++ " pontos de pontosDeVida."
-            hFlush stdout
+            putStrLn $ nome pokemonAtacante ++ " inflingiu \ESC[91m" ++ show valorAtaque ++ "\ESC[0m de dano e deixou " ++ nome pokemonAlvo ++ " com \ESC[92m" ++ show novaVida ++ "\ESC[0m pontos de pontosDeVida."
+            hFlush stdout       
             return Pokemon { primeiroTipo = primeiroTipo pokemonAlvo, segundoTipo = segundoTipo pokemonAlvo, nome = nome pokemonAlvo, pontosDeVida = novaVida, ataque = ataque pokemonAlvo }
         else do
             let currentTimeInSeconds = (round . utcTimeToPOSIXSeconds <$> getCurrentTime) :: IO Int
@@ -41,11 +42,11 @@ funcaoAtaque pokemonAtacante pokemonAlvo ataqueEscolhido
             if currentTimeMod2 == 0 then do
                 let valorAtaque = ataque pokemonAtacante * 2
                 let novaVida = pontosDeVida pokemonAlvo - valorAtaque
-                putStrLn $ nome pokemonAtacante ++ " inflingiu " ++ show valorAtaque ++ " de dano e deixou " ++ nome pokemonAlvo ++ " com " ++ show novaVida ++ " pontos de pontosDeVida."
+                putStrLn $ nome pokemonAtacante ++ " inflingiu \ESC[91m" ++ show valorAtaque ++ "\ESC[0m de dano e deixou " ++ nome pokemonAlvo ++ " com \ESC[92m" ++ show novaVida ++ "\ESC[0m pontos de pontosDeVida."
                 hFlush stdout
                 return Pokemon { primeiroTipo = primeiroTipo pokemonAlvo, segundoTipo = segundoTipo pokemonAlvo, nome = nome pokemonAlvo, pontosDeVida = novaVida, ataque = ataque pokemonAlvo }
             else do
-                putStrLn $ nome pokemonAtacante ++ " ataca, porém o seu oponente desviou do ataque PODEROSO!!"
+                putStrLn $ "\ESC[91m" ++ nome pokemonAtacante ++ " ataca, porém o seu oponente desviou do ataque PODEROSO!!\ESC[0m"
                 hFlush stdout
                 errouAtaque
                 return pokemonAlvo
@@ -63,8 +64,10 @@ excluirPokemon nomePokemon listaPokemons = return $ filter (\pokemon -> nome pok
 batalhar :: Pokemon -> Pokemon -> [Pokemon] -> [Pokemon] -> IO Bool
 batalhar p1 p2 reservasTreinador reservasGinasio
     | pontosDeVida p1 <= 0 = do 
-        putStrLn $ "Seu pokemon " ++ nome p1 ++ " foi derrotado!"
+        putStrLn $ "\ESC[91mSeu pokemon " ++ nome p1 ++ " foi derrotado!\ESC[0m"
         hFlush stdout
+        threadDelay 3000000
+
         if null reservasTreinador then do
             do
                 mensagemDerrota
@@ -75,8 +78,10 @@ batalhar p1 p2 reservasTreinador reservasGinasio
             novaReservasTreinador <- excluirPokemon (nome pokemonEscolhido) reservasTreinador
             batalhar pokemonEscolhido p2 novaReservasTreinador reservasGinasio
     | pontosDeVida p2 <= 0 = do
-        putStrLn $ "O pokemon " ++ nome p2 ++ " do ginásio foi derrotado!"
+        putStrLn $ "\ESC[92mO pokemon " ++ nome p2 ++ " do ginásio foi derrotado!\ESC[0m"
         hFlush stdout
+        threadDelay 3000000
+
         if null reservasGinasio then do
             do
                 mensagemVitoria
@@ -87,8 +92,14 @@ batalhar p1 p2 reservasTreinador reservasGinasio
             novaReservasGinasios <- excluirPokemon (nome pokemonEscolhido) reservasGinasio
             batalhar p1 pokemonEscolhido reservasTreinador novaReservasGinasios
     | otherwise = do
-        putStrLn "1 - Ataque normal: Um ataque rápido e certeiro"
-        putStrLn "2 - Ataque especial: Um ataque poderoso, porém lento, o oponente pode desviar!"
+        system "clear"
+        let ptsHpPoke = pontosDeVida p1
+        let ptsHpAd = pontosDeVida p2
+        putStrLn $ "Seu pokemon: " ++ nome p1 ++ " -> HP: \ESC[92m" ++ show ptsHpPoke ++ "\ESC[0m"
+        putStrLn $ "Adversário: " ++ nome p2 ++ " -> HP: \ESC[93m" ++ show ptsHpAd ++ "\ESC[0m\n"
+        putStrLn "\n[1] - Ataque normal: Um ataque rápido e certeiro"
+        putStrLn "[2] - Ataque especial: Um ataque poderoso, porém lento, o oponente pode desviar!"
+        putStr "\n>> "
         hFlush stdout
 
         ataqueEscolhido <- getLine
@@ -97,6 +108,7 @@ batalhar p1 p2 reservasTreinador reservasGinasio
         novoP2 <- funcaoAtaque p1 p2 escolhaNum
         if pontosDeVida novoP2 > 0 then do
             novoP1 <- funcaoAtaque p2 p1 1
+            threadDelay 3000000
             batalhar novoP1 novoP2 reservasTreinador reservasGinasio
         else do
             batalhar p1 novoP2 reservasTreinador reservasGinasio
@@ -105,11 +117,11 @@ batalhar p1 p2 reservasTreinador reservasGinasio
 -- Função errou ataque
 errouAtaque :: IO()
 errouAtaque = do
-    putStrLn"       ERROU! O ATAQUE      "
+    putStrLn"\ESC[91m       ERROU! O ATAQUE      \ESC[0m\n"
     putStrLn"⠀⠀⠀⠀⠀⠀⠀⠀⣤⡀⠀⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     putStrLn"⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣆⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     putStrLn"⠀⠀⠀⠀⠀⠀⠀⠸⣷⣮⣿⣿⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀"
-    putStrLn"⠀⠀⠀⠀⢀⡠⠒⠉⠀⠀⠀⠀⠀⠀⠈⠁⠲⢖⠒⡀⠀⠀ "
+    putStrLn"⠀⠀⠀⠀⢀⡠⠒⠉⠀⠀⠀⠀⠀⠀⠈⠁⠲⢖⠒⡀⠀  "
     putStrLn"⠀⠀⠀⡠⠴⣏⠀⢀⡀⠀⢀⡀⠀⠀⠀⡀⠀⠀⡀⠱⡈⢄⠀"
     putStrLn"⠀⠀⢠⠁⠀⢸⠐⠁⠀⠄⠀⢸⠀⠀⢎⠀⠂⠀⠈⡄⢡⠀⢣"
     putStrLn"⠀⢀⠂⠀⠀⢸⠈⠢⠤⠤⠐⢁⠄⠒⠢⢁⣂⡐⠊⠀⡄⠀⠸"
@@ -120,7 +132,7 @@ errouAtaque = do
     putStrLn"⡀⣀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⠀"
     putStrLn"⠑⢄⠉⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⠀"
     putStrLn"⠀⠀⠑⠢⢱⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠁⠀"
-    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀"
+    putStrLn"⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀\n"
     hFlush stdout
 
 mensagemVitoria :: IO()
