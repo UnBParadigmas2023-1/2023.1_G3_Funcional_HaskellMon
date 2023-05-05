@@ -86,7 +86,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Vitor Diniz Pagani Vieira Ribeiro |  Contribui na parte de menu inicial, preparação para a batalha e na resolução do módulo main. | Boa |
 | João Gabriel de Campos de Matos |  Contribui principalmente na parte de criação de ginasio (modulo pre-battle), e na integração dela com outras partes | Boa |
 | Mateus Moreira Lima |  Contribui juntamente com o Antonio na criação da lógica de batalha dos pokémons, e ajudei na integração do módulo de batalha com os outros módulos. | Boa |
-
+| Yan Andrade de Sena  |  Ajuda na criação da lista de Pokemons disponibilizados e separando os pokemons por evolução     | Regular |
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
 (i) Lições Aprendidas;
