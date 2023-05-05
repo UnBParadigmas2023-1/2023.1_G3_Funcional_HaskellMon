@@ -14,7 +14,7 @@ show_gym gym a
         hFlush stdout
         putStrLn (name gym) 
         putStrLn "\n\tPokemons adversários:"
-        mapM_ putStrLn [show i ++ ". " ++ nome ++ "\tTipo 1: " ++ show primeiroTipo ++ "\tTipo 2: " ++ show segundoTipo ++ "\tHP: " ++ show hp ++ "\tAtaque: " ++ show ataque | (i, Pokemon _ nome primeiroTipo segundoTipo hp ataque) <- zip [1..] (pokemons gym)]
+        mapM_ putStrLn [". " ++ nome ++ "\tTipo 1: " ++ show primeiroTipo ++ "\tTipo 2: " ++ show segundoTipo ++ "\tHP: " ++ show hp ++ "\tAtaque: " ++ show ataque | (i, Pokemon nome primeiroTipo segundoTipo hp ataque) <- zip [1..] (pokemons gym)]
         putStrLn "\n[1] Desafiar\n[2] Voltar"
         putStrLn "\n>> "
         hFlush stdout
