@@ -91,4 +91,6 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 
 ## Fontes
 > https://www.haskell.org/documentation/
+> https://emojicombos.com/pokemon-ascii-art
+> https://patorjk.com/software/taag/#p=testall&f=ANSI%20Shadow&t=HASKELLMON
 Indique ainda sobre fontes de leitura complementares.
