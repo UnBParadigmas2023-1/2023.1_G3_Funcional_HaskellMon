@@ -1,13 +1,12 @@
 module Structs where
 
 data Pokemon = Pokemon {
-  id :: Int,
   nome :: String,
   primeiroTipo :: Int,
   segundoTipo :: Int,
   pontosDeVida :: Int,
   ataque :: Int
-}
+} deriving Show
 
 data Gym = Gym { 
   name :: String, 

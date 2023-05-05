@@ -4,10 +4,8 @@ import System.Process
 import Control.Concurrent
 import Pre_battle
 import Structs
-import Pokedex (listaPokemons)
-
-exibirPokemons :: [Pokemon] -> IO ()
-exibirPokemons pokemons = mapM_ putStrLn [show i ++ ". " ++ nome ++ "\tTipo 1: " ++ show primeiroTipo ++ "\tTipo 2: " ++ show segundoTipo ++ "\tHP: " ++ show hp ++ "\tAtaque: " ++ show ataque | (i, Pokemon _ nome primeiroTipo segundoTipo hp ataque) <- zip [1..] pokemons]
+import Pokedex (listaPokemons, treinador)
+import Battle (iniciaBatalha)
 
 main :: IO ()
 main = menu ""
@@ -33,15 +31,15 @@ menu "" = do
 
 menu i 
     | i == "1" = do
-         putStrLn "Iniciando HakellMon..."
-         threadDelay 2500000
-         aux <- pre_battle
-         --exibirPokemons (pokemons aux)
-         print (name aux)       
+        putStrLn "Iniciando HakellMon..."
+        threadDelay 2500000
+        ginasio <- pre_battle
+        batalha <- iniciaBatalha (pokes treinador) (pokemons ginasio)
+        putStrLn "Batalha encerrada."
     | i == "2" = do 
-         putStrLn " 0/ Tchau!"
-         exitSuccess
+        putStrLn " 0/ Tchau!"
+        exitSuccess
     | otherwise = do
-         putStrLn "Escolha inválida, digite novamente"
-         threadDelay 2500000
-         menu ""
+        putStrLn "Escolha inválida, digite novamente"
+        threadDelay 2500000
+        menu ""
