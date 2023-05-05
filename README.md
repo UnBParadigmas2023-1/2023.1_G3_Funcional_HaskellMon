@@ -80,7 +80,8 @@ TEMPO: +/- 15min
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Antonio Rangel Chaves  |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota. | Regular |
+| Antonio Rangel Chaves      |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
+| Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e mensagens de vitória e derrota      | Regular |
 | Vitor Diniz Pagani Vieira Ribeiro |  Contribui na parte de menu inicial, preparação para a batalha e na resolução do main. | Regular |
 
 ## Outros 
@@ -92,4 +93,6 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 
 ## Fontes
 > https://www.haskell.org/documentation/
+> https://emojicombos.com/pokemon-ascii-art
+> https://patorjk.com/software/taag/#p=testall&f=ANSI%20Shadow&t=HASKELLMON
 Indique ainda sobre fontes de leitura complementares.
