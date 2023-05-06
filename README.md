@@ -51,14 +51,20 @@ A aplicação segue o seguinte fluxograma:
 ![](./images/fluxograma/main.png)
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
+![](./images/screenshots/titulo.jpg)
+![](./images/screenshots/ginasios.jpg)
+![](./images/screenshots/batalha01.jpg)
+![](./images/screenshots/batalha02.jpg)
+![](./images/screenshots/vitoria.jpg)
 
 ## Instalação 
 **Linguagens**: Haskell<br>
-**Tecnologias**: GHC, Docker<br>
+**Tecnologias**: GHC, Cabal, Docker, Make<br>
 <!--Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos!-->
+
+Para clonar o repositório:
 
 > $ git clone https://github.com/UnBParadigmas2023-1/2023.1_G3_Funcional_HaskellMon.git
 
@@ -73,9 +79,8 @@ ou
 > $ make build_run
 
 ## Uso 
-Explique como usar seu projeto.
-Procure ilustrar em passos, com apoio de telas do software, seja com base na interface gráfica, seja com base no terminal.
-Nessa seção, deve-se revelar de forma clara sobre o funcionamento do software.
+
+O jogo é realizado por meio de comandos no terminal. Dessa forma, apenas siga as instruções disponíveis nos menus interativos para seguir o fluxo do game, selecionando as opções de interesse conforme a listagem indexada na tela.
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.
@@ -102,13 +107,18 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Yuri Alves Bacarias  |  Trabalhei na parte de preenchimento de ginasio (pre-batle), com a adição da random, balancemante de pokemons e na integração com outros modulos     | Regular |
 
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+
+Infelizmente o fluxograma modelado pela equipe não foi concluido inteiramente, faltando a parte de escolha dos pokemons iníciais.
+
+A atividade serviu de forma a contribuir muito e agregar muito valor na aquisição e consolidação dos conhecimentos estudados na disciplina sobre o módulo em questão. Uma verdadeira quebra de paradigma no que diz respeito a uma nova forma de se pensar a implemtação.
+
+Acreditamos que esse simples game realiza bem o seu objetivo tendo algumas fragilidades como fixação dos pokemons iniciais e a não evolução dos mesmos. Fragilidades tais que podem servir de inspiração para implemetações futuras.
 
 ## Fontes
 > https://www.haskell.org/documentation/
+
 > https://emojicombos.com/pokemon-ascii-art
+
 > https://patorjk.com/software/taag/#p=testall&f=ANSI%20Shadow&t=HASKELLMON
+
+> https://www.pokemon.com/br/pokedex/
