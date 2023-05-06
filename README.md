@@ -82,7 +82,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | -- | -- | -- |
 | Antonio Igor Carvalho      | Criação da lógica de batalha juntamente com Mateus, contribuição na junção dos módulos | Boa |
 | Antonio Rangel Chaves      |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
-| Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e mensagens de vitória e derrota      | Regular |
+| Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e separação dos pokemons     | Boa |
 | Vitor Diniz Pagani Vieira Ribeiro |  Contribui na parte de menu inicial, preparação para a batalha e na resolução do módulo main. | Boa |
 | João Gabriel de Campos de Matos |  Contribui principalmente na parte de criação de ginasio (modulo pre-battle), e na integração dela com outras partes | Boa |
 | Mateus Moreira Lima |  Contribui juntamente com o Antonio na criação da lógica de batalha dos pokémons, e ajudei na integração do módulo de batalha com os outros módulos. | Boa |
@@ -99,4 +99,3 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 > https://www.haskell.org/documentation/
 > https://emojicombos.com/pokemon-ascii-art
 > https://patorjk.com/software/taag/#p=testall&f=ANSI%20Shadow&t=HASKELLMON
-Indique ainda sobre fontes de leitura complementares.
