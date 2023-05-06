@@ -35,19 +35,36 @@ Paradigmas:
 |18/0078640|Yuri Alves bacarias|
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
-Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no projeto.
+
+Uma aventura Pokémon.
+
+O HaskellMon é um minigame simples de batalha Pokémon. 
+
+Permite que o usuário escolha um ginásio para batalhar com seus defensores de forma interativa.
+
+O usuário pode escolher um ginásio de acordo com a dificuldade, checar os pokémons defensores e desafia-los.
+
+A batalha se dá de forma interativa onde o usuário escolhe entre usar um ataque básico, mais fraco e com mais chance de acerto, e um ataque poderoso, mais forte e mais lento, o que permite o adversário desviar.
+
+A aplicação segue o seguinte fluxograma:
+
+![](./images/fluxograma/main.png)
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
+![](./images/screenshots/titulo.jpg)
+![](./images/screenshots/ginasios.jpg)
+![](./images/screenshots/batalha01.jpg)
+![](./images/screenshots/batalha02.jpg)
+![](./images/screenshots/vitoria.jpg)
 
 ## Instalação 
 **Linguagens**: Haskell<br>
-**Tecnologias**: GHC, Docker<br>
+**Tecnologias**: GHC, Cabal, Docker, Make<br>
 <!--Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos!-->
+
+Para clonar o repositório:
 
 > $ git clone https://github.com/UnBParadigmas2023-1/2023.1_G3_Funcional_HaskellMon.git
 
@@ -62,33 +79,40 @@ ou
 > $ make build_run
 
 ## Uso 
-Explique como usar seu projeto.
-Procure ilustrar em passos, com apoio de telas do software, seja com base na interface gráfica, seja com base no terminal.
-Nessa seção, deve-se revelar de forma clara sobre o funcionamento do software.
+
+O jogo é realizado por meio de comandos no terminal. Dessa forma, apenas siga as instruções disponíveis nos menus interativos para seguir o fluxo do game, selecionando as opções de interesse conforme a listagem indexada na tela.
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
+
+Link para vídeo de apresentação: https://youtu.be/iTfxtaZ8nqw
 
 ## Participações
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Antonio Igor Carvalho      | Criação da lógica de batalha juntamente com Mateus, contribuição na junção dos módulos | Boa |
+| Antonio Rangel Chaves      |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
+| Daniel Porto de Souza | Idealização do projeto, implementação e evolução do módulo pre-battle, definição das estruturas structs, estruturação do projeto, ajustes e melhoramentos nas interfaces e apoio na integração final | Excelente |
+| Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e separação dos pokemons     | Boa |
+| João Gabriel de Campos de Matos |  Contribui principalmente na parte de criação de ginasio (modulo pre-battle), e na integração dela com outras partes | Boa |
+| Mateus Moreira Lima |  Contribui juntamente com o Antonio na criação da lógica de batalha dos pokémons, e ajudei na integração do módulo de batalha com os outros módulos. | Boa |
+| Vitor Diniz Pagani Vieira Ribeiro |  Contribui na parte de menu inicial, preparação para a batalha e na resolução do módulo main. | Boa |
+| Yan Andrade de Sena  |  Ajuda na criação da lista de Pokemons disponibilizados e separando os pokemons por evolução     | Regular |
+| Yuri Alves Bacarias  |  Trabalhei na parte de preenchimento de ginasio (pre-batle), com a adição da random, balancemante de pokemons e na integração com outros modulos     | Regular |
 
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+
+Infelizmente o fluxograma modelado pela equipe não foi concluido inteiramente, faltando a parte de escolha dos pokemons iníciais.
+
+A atividade serviu de forma a contribuir muito e agregar muito valor na aquisição e consolidação dos conhecimentos estudados na disciplina sobre o módulo em questão. Uma verdadeira quebra de paradigma no que diz respeito a uma nova forma de se pensar a implemtação.
+
+Acreditamos que esse simples game realiza bem o seu objetivo tendo algumas fragilidades como fixação dos pokemons iniciais e a não evolução dos mesmos. Fragilidades tais que podem servir de inspiração para implemetações futuras.
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda sobre fontes de leitura complementares.
+> https://www.haskell.org/documentation/
+
+> https://emojicombos.com/pokemon-ascii-art
+
+> https://patorjk.com/software/taag/#p=testall&f=ANSI%20Shadow&t=HASKELLMON
+
+> https://www.pokemon.com/br/pokedex/
