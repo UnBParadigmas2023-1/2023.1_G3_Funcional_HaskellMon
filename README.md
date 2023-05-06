@@ -83,14 +83,8 @@ ou
 O jogo é realizado por meio de comandos no terminal. Dessa forma, apenas siga as instruções disponíveis nos menus interativos para seguir o fluxo do game, selecionando as opções de interesse conforme a listagem indexada na tela.
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
+
+Link para vídeo de apresentação: https://youtu.be/iTfxtaZ8nqw
 
 ## Participações
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
