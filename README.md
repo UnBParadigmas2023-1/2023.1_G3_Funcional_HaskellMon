@@ -35,9 +35,20 @@ Paradigmas:
 |18/0078640|Yuri Alves bacarias|
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
-Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no projeto.
+
+Uma aventura Pokémon.
+
+O HaskellMon é um minigame simples de batalha Pokémon. 
+
+Permite que o usuário escolha um ginásio para batalhar com seus defensores de forma interativa.
+
+O usuário pode escolher um ginásio de acordo com a dificuldade, checar os pokémons defensores e desafia-los.
+
+A batalha se dá de forma interativa onde o usuário escolhe entre usar um ataque básico, mais fraco e com mais chance de acerto, e um ataque poderoso, mais forte e mais lento, o que permite o adversário desviar.
+
+A aplicação segue o seguinte fluxograma:
+
+![](./images/fluxograma/main.png)
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
@@ -82,12 +93,14 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | -- | -- | -- |
 | Antonio Igor Carvalho      | Criação da lógica de batalha juntamente com Mateus, contribuição na junção dos módulos | Boa |
 | Antonio Rangel Chaves      |  Criação do menu inicial, ajuda na parte de preparação para a batalha e mensagens de vitória e derrota | Regular |
+| Daniel Porto de Souza | Idealização do projeto, implementação e evolução do módulo pre-battle, definição das estruturas structs, estruturação do projeto, ajustes e melhoramentos nas interfaces e apoio na integração final | Excelente |
 | Kess Jhones Gomes Tavares  |  Ajuda na criação do menu inicial, ajuda na criação dos ginásios e separação dos pokemons     | Boa |
 | João Gabriel de Campos de Matos |  Contribui principalmente na parte de criação de ginasio (modulo pre-battle), e na integração dela com outras partes | Boa |
 | Mateus Moreira Lima |  Contribui juntamente com o Antonio na criação da lógica de batalha dos pokémons, e ajudei na integração do módulo de batalha com os outros módulos. | Boa |
 | Vitor Diniz Pagani Vieira Ribeiro |  Contribui na parte de menu inicial, preparação para a batalha e na resolução do módulo main. | Boa |
 | Yan Andrade de Sena  |  Ajuda na criação da lista de Pokemons disponibilizados e separando os pokemons por evolução     | Regular |
 | Yuri Alves Bacarias  |  Trabalhei na parte de preenchimento de ginasio (pre-batle), com a adição da random, balancemante de pokemons e na integração com outros modulos     | Regular |
+
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
 (i) Lições Aprendidas;
